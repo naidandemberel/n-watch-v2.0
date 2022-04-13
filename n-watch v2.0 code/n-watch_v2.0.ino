@@ -72,7 +72,7 @@ boolean wakeupCheck()
 void battery()
 {
   batvalue = analogRead(batteryPin)*(6.6/4096);
-  percent = (batvalue-1.55)/0.0.95*100;
+  percent = (batvalue-1.55)/0.95*100;
 }
 
 void loop()
