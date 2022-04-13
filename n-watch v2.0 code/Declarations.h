@@ -3,6 +3,7 @@
 
 #define DEBUG
 #define backLight GPIO_NUM_5
+#define batteryPin 33
 #define leftPin  14
 #define rightPin 13
 #define I2C_SDA  21
@@ -32,6 +33,8 @@ DFRobot_SHT20 sht;
 RTC_DATA_ATTR bool timeseted = false;
 int ho, mi;
 int tim[6];
+float percent;
+float batvalue;
 const long interval = 2000;
 unsigned long previous = 0;
 String val;
