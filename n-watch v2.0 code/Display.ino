@@ -22,35 +22,46 @@ void displayBLconnect()
 void mainDisplay()
 {
   unsigned long currentTime = millis();
-  //Serial.println(millis());
-  if(currentTime - previous >= interval)
+  if (currentTime - previous >= interval)
   {
     temp = sht.readTemperature();
     previous = currentTime;
-    Serial.println("2sec");
+    battery();
   }
   mi = rtc.getMinute();
   ho = rtc.getHour(true);
-  //temp = sht.readTemperature();
-  if (mi < 10){mistring = "0" + String(mi);}
-  else{mistring = String(mi);}
-  if (ho < 10){hostring = "0" + String(ho);}
-  else{hostring = String(ho);}
-  
+  if (mi < 10) {
+    mistring = "0" + String(mi);
+  }
+  else {
+    mistring = String(mi);
+  }
+  if (ho < 10) {
+    hostring = "0" + String(ho);
+  }
+  else {
+    hostring = String(ho);
+  }
+
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
-  
+
   tft.setTextFont(7);
   tft.setTextSize(1);
-  tft.setCursor(50, 70);
+  tft.setCursor(45, 80);
   tft.print(hostring + ":" + mistring);
-  
+
   tft.setTextFont(1);
   tft.setTextSize(2);
   tft.setCursor(30, 180);
   tft.print(rtc.getDate());
-  
-  tft.setCursor(10,10);
-  tft.print(temp,1);
-  tft.setCursor(60,10);
+
+  tft.setCursor(10, 10);
+  tft.print(temp, 1);
+  tft.setCursor(60, 10);
   tft.print("C");
+
+  tft.setCursor(185, 10);
+  tft.print(String(percent,0)+"%");
+  tft.setCursor(175, 30);
+  tft.print(String(batvalue,2)+"V");
 }
