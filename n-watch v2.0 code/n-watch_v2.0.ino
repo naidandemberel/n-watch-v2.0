@@ -10,6 +10,7 @@ void setup()
   Serial.begin(115200);
   Serial.println("n-watch v2.0");
 #endif
+
   pinMode(leftPin, INPUT);
   pinMode(rightPin, INPUT);
   
@@ -41,7 +42,7 @@ void sleep()
   //adc_power_off();
   //WiFi.mode(WIFI_OFF);
   
-  esp_sleep_enable_ext0_wakeup(GPIO_NUM_13, 1);
+  esp_sleep_enable_ext0_wakeup(GPIO_NUM_14, 1);
   Serial.println("Sleping");
   Serial.flush();
   esp_light_sleep_start();
@@ -59,7 +60,7 @@ void onWakeup()
 
 boolean wakeupCheck()
 {
-  if(digitalRead(rightPin) == 1)
+  if(digitalRead(leftPin) == 1)
   {
     return 1;
   }
@@ -72,7 +73,7 @@ boolean wakeupCheck()
 void battery()
 {
   batvalue = analogRead(batteryPin)*(6.6/4096);
-  percent = (batvalue-2.2)/1.55*100;
+  percent = (batvalue-3.0)/0.75*100;
 }
 
 void loop()
@@ -82,7 +83,10 @@ void loop()
     if (timeseted == true)
     {
       mainDisplay();
-      Serial.println(batvalue);
+      if(displayHold == true)
+      {
+        delay(displayTime);
+      }
     }
     else
     {
