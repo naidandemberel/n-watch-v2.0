@@ -11,7 +11,7 @@ void displayBLconnect()
 {
   tft.setSwapBytes(true);
   tft.pushImage(50, 20, 140, 140, BL);
-  tft.setTextColor(TFT_BLUE, TFT_BLACK);
+  tft.setTextColor(TFT_WHITE, TFT_BLACK);
   tft.setTextSize(2);
   tft.setCursor(10, 175);
   tft.print("Please connect with");
@@ -43,7 +43,7 @@ void mainDisplay()
   else {
     hostring = String(ho);
   }
-  tft.setTextColor(TFT_ORANGE, TFT_BLACK);
+  tft.setTextColor(TFT_WHITE, TFT_BLACK);
   tft.setTextFont(7);
   tft.setTextSize(1);
   tft.setCursor(45, 80);
