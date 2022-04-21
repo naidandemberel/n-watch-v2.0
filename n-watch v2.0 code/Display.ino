@@ -4,14 +4,14 @@ void initLCD()
   digitalWrite(backLight, HIGH);
   tft.init();
   tft.setRotation(2);
-  tft.fillScreen(TFT_BLACK);
+  tft.fillScreen(TFT_RED);
 }
 
 void displayBLconnect()
 {
   tft.setSwapBytes(true);
   tft.pushImage(50, 20, 140, 140, BL);
-  tft.setTextColor(TFT_WHITE, TFT_BLACK);
+  tft.setTextColor(TFT_BLUE, TFT_BLACK);
   tft.setTextSize(2);
   tft.setCursor(10, 175);
   tft.print("Please connect with");
@@ -25,6 +25,7 @@ void mainDisplay()
   if (currentTime - previous >= interval)
   {
     temp = sht.readTemperature();
+    humi = sht.readHumidity();
     previous = currentTime;
     battery();
   }
@@ -42,9 +43,7 @@ void mainDisplay()
   else {
     hostring = String(ho);
   }
-
-  tft.setTextColor(TFT_WHITE, TFT_BLACK);
-
+  tft.setTextColor(TFT_ORANGE, TFT_BLACK);
   tft.setTextFont(7);
   tft.setTextSize(1);
   tft.setCursor(45, 80);
@@ -60,7 +59,12 @@ void mainDisplay()
   tft.setCursor(60, 10);
   tft.print("C");
 
-  tft.setCursor(185, 10);
+  tft.setCursor(10, 30);
+  tft.print(humi, 1);
+  tft.setCursor(60, 30);
+  tft.print("%");
+  
+  tft.setCursor(175, 10);
   tft.print(String(percent,0)+"%");
   tft.setCursor(175, 30);
   tft.print(String(batvalue,2)+"V");
