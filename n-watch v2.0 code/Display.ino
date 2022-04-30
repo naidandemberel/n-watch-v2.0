@@ -4,7 +4,7 @@ void initLCD()
   digitalWrite(backLight, HIGH);
   tft.init();
   tft.setRotation(2);
-  tft.fillScreen(TFT_RED);
+  tft.fillScreen(TFT_BLACK);
 }
 
 void displayBLconnect()
